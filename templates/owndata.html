@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/owndata.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+
+    <title>DocGPT-Add data</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navleft">
+            <div class="navimage">
+                <img src="{{ url_for('static', filename='Image/bot_image.png') }}" alt="" srcset="">
+            </div>
+            <a href="/">
+                <h3>DocGPT</h3>
+            </a>
+        </div>
+        <div class="navright">
+            <div class="user">
+                <img src="{{ url_for('static', filename='Image/icons/user.svg') }}" alt="" srcset="">
+                <h3>{{user_id}}</h3>
+            </div>
+            <button id="createbtn" onclick="window.location='/create'">Create <img
+                    src="{{ url_for('static', filename='Image/icons/plus-svgrepo-com.svg') }}" alt=""
+                    srcset=""></button>
+            <button id="logoutbtn" onclick="window.location='/logout'">Logout <img
+                    src="{{ url_for('static', filename='Image/icons/logout-svgrepo-com.svg') }}" alt=""
+                    srcset=""></button>
+        </div>
+    </nav>
+      <div class="contents">
+        <form action="" method="post" enctype="multipart/form-data" id="uploadform">
+            <input type="text" name="dbname" id="dbname" placeholder="Enter database name here..">
+            <div class="dropzone">
+                <div id="filelist">
+
+                </div>
+                <img src="{{ url_for('static', filename='Image/icons/files.svg') }}" alt="" srcset="">
+                <h2>Click here or <br> Drag your files here...</h2>
+
+            </div>
+            
+            <input type="file" style="display:none;" id="files" name="files" accept=".pdf" multiple="multiple">
+            <button type="submit">Upload</button>
+
+        </form>
+      </div>
+    <script src="{{ url_for('static', filename='scripts/owndata.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/script.js') }}"></script>
+</body>
+</html>

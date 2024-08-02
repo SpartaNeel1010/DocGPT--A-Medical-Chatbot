@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DocGPT-Ask any question related to your ailment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet"> 
+    <!-- <link rel="icon" type="image/x-icon" href="static/Image/favicon.ico"> -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='Image/favicon.png') }}" type="image/x-icon">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet"> -->
+</head>
+
+<body>
+
+    <nav class="">
+        <div class="navleft">
+            <div class="navimage">
+                <img src="{{ url_for('static', filename='Image/bot_image.png') }}" alt="" srcset="">
+            </div>
+            <a href="/">
+                <h3>DocGPT</h3>
+            </a>
+        </div>
+        <div class="dropdown">
+            <button onclick="myFunction()" class="dropbtn">{{current_db}}</button>
+            <div id="myDropdown" class="dropdown-content">
+                {% for db in databases %}
+                <a href="/database/{{db}}">{{db}}</a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="navright">
+            <div class="user">
+                <img src="{{ url_for('static', filename='Image/icons/user.svg') }}" alt="" srcset="">
+                <h3>{{user_id}}</h3>
+            </div>
+            <button id="createbtn">Create <img
+                    src="{{ url_for('static', filename='Image/icons/plus-svgrepo-com.svg') }}" alt=""
+                    srcset=""></button>
+            <button id="logoutbtn" onclick="window.location='/logout'">Logout <img
+                    src="{{ url_for('static', filename='Image/icons/logout-svgrepo-com.svg') }}" alt=""
+                    srcset=""></button>
+        </div>
+    </nav>
+    <div class="content">
+        <div class="convoboard">
+            <div class="new_convo">
+                <button id="newConvo">
+                    <h2>New chat +</h2>
+                </button>
+            </div>
+            <div class="convos">
+                {% for convo in convos %}
+                <div class="conversation" id="{{convo['id']}}">
+                    <h4>{{convo['title']}}</h4>
+
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="--dark-theme" id="chat">
+            <div class="chat__conversation-board">
+                {% if chats|length ==0 %}
+                <div class="inital">
+
+                    <div class="top">
+                        <div class="image">
+                            <img src="/static/Image/bot_image.png" alt="" srcset="">
+                        </div>
+                        <div class="welcome">
+                            <h4>
+                                Welcome to DocGPT!!
+                                <br>
+                                How can I help you today?
+                            </h4>
+
+                        </div>
+
+                    </div>
+                    <form id="suggestform" class="inp_form_1" action="/" method="post">
+                        <input type="text" id="inputText" class="finput" name="inp_text">
+                        <div class="bottom">
+                            <div class="first">
+                                <div class="left">
+                                    
+                                        <div class="heading">
+                                            Get remedies of your ailment
+                                        </div>
+                                        <div class="example">
+                                            Can you suggest ways to relieve migraine headaches?
+                                        </div>
+                                    
+                                </div>
+                                <div class="right">
+                                    
+                                        <div class="heading">
+                                            Diagnose your ailment
+                                        </div>
+                                        <div class="example">
+                                            I am feeling pain in my throat, diagnose my disease.
+
+                                        </div>
+                                    
+
+
+                                </div>
+
+                            </div>
+                            <div class="second">
+                                <div class="left">
+                                    
+                                        <div class="heading">
+                                            Know symptoms of any disease
+                                        </div>
+                                        <div class="example">
+                                            Can you explain the symptoms of an allergic reaction?
+                                        </div>
+                                  
+
+                                </div>
+                                <div class="right">
+                                    
+                                        <div class="heading">
+                                            Ask general questions too
+                                        </div>
+                                        <div class="example">
+                                            How can I differentiate between a migraine and a tension headache?
+                                        </div>
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </form>
+
+                </div>
+
+                {% else %}
+
+                {% for chat in chats%}
+
+
+                <div class="chat__conversation-board__message-container reversed">
+                    <div class="chat__conversation-board__message__person">
+                        <div class="chat__conversation-board__message__person__avatar"><img
+                                src="{{ url_for('static', filename='Image/Human_image.png') }}" alt="Dennis Mikle" />
+                        </div>
+                        <span class="chat__conversation-board__message__person__nickname">Me</span>
+                    </div>
+                    <div class="chat__conversation-board__message__context">
+                        <div class="chat__conversation-board__message__bubble">
+                            <h4 class="chat_message">
+                                {{chat[0] | safe }}
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat__conversation-board__message-container">
+                    <div class="chat__conversation-board__message__person">
+                        <div class="chat__conversation-board__message__person__avatar"><img
+                                src="{{ url_for('static', filename='Image/bot_image.png') }}" alt="" /></div><span
+                            class="chat__conversation-board__message__person__nickname">Bot</span>
+                    </div>
+                    <div class="chat__conversation-board__message__context">
+                        <div class="chat__conversation-board__message__bubble">
+                            <h4>
+                                {{chat[1] | safe}}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="speakBtn_div">
+                        <button type="button" id="speakBtn">
+                            <img src="{{ url_for('static', filename='Image/icons/speakBtn.svg') }}" alt="" srcset="">
+                        </button>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+
+
+
+            </div>
+            <div class="chat__conversation-panel">
+                <div class="chat__conversation-panel__container">
+
+                    <form class="inp_form" action="/{{action}}" method="post" autocomplete="off">
+                        <button id="Button_for_recording" type="button"> 
+                            <img src="{{ url_for('static', filename='Image/icons/micBtn.svg') }}" id="micBtn" alt="" srcset="">
+                            <img src="{{ url_for('static', filename='Image/icons/record.svg') }}" id="recBtn" alt="" srcset="">
+                        </button>
+                        <input type="text" class="finput" id="inp_text" name="inp_text" placeholder="Type a message...">
+                        <button type="submit" class="fbutton" id="button">
+                            <svg fill="#7b57fa" height="45px" width="45px" version="1.1" id="Capa_1"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                viewBox="-49.5 -49.5 594.00 594.00" xml:space="preserve" stroke="#b147fc"
+                                transform="rotate(0)">
+
+                                <g id="SVGRepo_bgCarrier" stroke-width="0" />
+
+                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+
+                                <g id="SVGRepo_iconCarrier">
+                                    <g id="XMLID_51_">
+                                        <path id="XMLID_53_"
+                                            d="M164.711,456.687c0,2.966,1.647,5.686,4.266,7.072c2.617,1.385,5.799,1.207,8.245-0.468l55.09-37.616 l-67.6-32.22V456.687z" />
+                                        <path id="XMLID_52_"
+                                            d="M492.431,32.443c-1.513-1.395-3.466-2.125-5.44-2.125c-1.19,0-2.377,0.264-3.5,0.816L7.905,264.422 c-4.861,2.389-7.937,7.353-7.904,12.783c0.033,5.423,3.161,10.353,8.057,12.689l125.342,59.724l250.62-205.99L164.455,364.414 l156.145,74.4c1.918,0.919,4.012,1.376,6.084,1.376c1.768,0,3.519-0.322,5.186-0.977c3.637-1.438,6.527-4.318,7.97-7.956 L494.436,41.257C495.66,38.188,494.862,34.679,492.431,32.443z" />
+                                    </g>
+                                </g>
+
+                            </svg>
+                        </button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='scripts/script.js') }}"></script>
+</body>
+
+</html>

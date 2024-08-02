@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/create.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+    <title>Choose</title>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navleft">
+            <div class="navimage">
+                <img src="{{ url_for('static', filename='Image/bot_image.png') }}" alt="" srcset="">
+            </div>
+            <a href="/">
+                <h3>DocGPT</h3>
+            </a>
+
+
+
+        </div>
+        <div class="navright">
+            <div class="user">
+                <img src="{{ url_for('static', filename='Image/icons/user.svg') }}" alt="" srcset="">
+                <h3>{{user_id}}</h3>
+            </div>
+            <button id="createbtn" onclick="window.location='/create'">Create <img
+                    src="{{ url_for('static', filename='Image/icons/plus-svgrepo-com.svg') }}" alt=""
+                    srcset=""></button>
+            <button id="logoutbtn" onclick="window.location='/logout'">Logout <img
+                    src="{{ url_for('static', filename='Image/icons/logout-svgrepo-com.svg') }}" alt=""
+                    srcset=""></button>
+        </div>
+    </nav>
+    <div class="deck">
+        <div class="contents">
+            <div class="upper">
+                <h3>Add your own data</h3>
+            </div>
+            <div class="lower">
+                <div class="data" id="owndata">
+                    <div class="images">
+                        <img src="{{ url_for('static', filename='Image/owndata.png') }}" alt="">
+    
+                    </div>
+                    <div class="texts">
+                        <h3>
+                            Create your own data base
+                        </h3>
+    
+                    </div>
+    
+                </div>
+                <div class="data" id="adddata">
+                    <div class="images">
+                        <img src="{{ url_for('static', filename='Image/adddata.png') }}" alt="">
+    
+                    </div>
+                    <div class="texts">
+                        <h3>
+                            Add to existing DocGPT
+                        </h3>
+    
+                    </div>
+    
+                </div>
+    
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementsByClassName("navimage")[0].addEventListener('click',()=>{window.location="/"})
+        
+        let owndata=document.getElementById("owndata")
+        owndata.addEventListener('click',()=>{
+            window.location="/owndata"
+        })
+        let adddata=document.getElementById("adddata")
+        adddata.addEventListener('click',()=>{
+            window.location="/adddata"
+        })
+        
+
+
+    </script>
+</body>
+
+</html>

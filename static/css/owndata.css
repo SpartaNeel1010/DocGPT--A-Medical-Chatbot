@@ -1,0 +1,120 @@
+nav{
+    height:9%;
+    width:100%;
+}
+.contents{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    height:90%;
+}
+form{
+    width:45%;
+    height:70%;
+    background-color: #171717;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+form h3{
+    font-family: "Jersey 10", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 38px;
+    color: white;
+    background-color:#212121 ;
+    padding: 10px 50px;
+    border-radius: 15px;
+    margin:0px;
+    text-align: center;
+
+}
+
+form button{
+    color: white;
+    background-color: #bf35f6d9;
+    padding:10px 20px;
+    cursor: pointer;
+    border-radius: 15px;
+    width:20%;
+    font-family: "Jersey 10", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 38px;
+    color: white;
+    padding:5px ;
+
+
+
+
+}
+.dropzone{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    width:80%;
+    height:60%;
+    margin:20px;
+    border-color: #ffffff36;
+    border-width: 2px;
+    border-style: dashed;
+    border-radius: 15px;
+    cursor: pointer;
+    
+}
+.dropzone img
+{
+    width:auto;
+    height:40%;
+}
+.dropzone h2
+{
+    font-family: "Jersey 10", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 38px;
+    color: white;
+    text-align: center;
+    margin:0px;
+
+}
+#filelist
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width:100%;
+    height:100%;
+    overflow:scroll;
+    display: none;
+    margin:10px;
+}
+#dbname{
+    width:50%;
+    height:30px;
+    border:none;
+    border-radius: 15px;
+    background-color: #212121;
+    color:white;
+    font-family: "Jersey 10", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 38px;
+    color: white;
+    padding: 10px 20px;
+}
+#dbname::placeholder{
+    font-family: "Jersey 10", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 38px;
+    color: rgb(163, 163, 163);
+    
+    /* text-align: center; */
+    
+}

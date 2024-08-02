@@ -1,0 +1,11 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <path id="wave1" d="M0 70 Q25 90, 50 70 T100 70" fill="none" stroke="white" stroke-width="2">
+    <animate attributeName="d" dur="2s" repeatCount="indefinite" values="M0 70 Q25 80, 50 70 T100 70; M0 70 Q25 90, 50 70 T100 70; M0 70 Q25 80, 50 70 T100 70" />
+  </path>
+  <path id="wave2" d="M0 50 Q25 70, 50 50 T100 50" fill="none" stroke="white" stroke-width="2">
+    <animate attributeName="d" dur="1s" repeatCount="indefinite" values="M0 50 Q25 60, 50 50 T100 50; M0 50 Q25 70, 50 50 T100 50; M0 50 Q25 60, 50 50 T100 50" />
+  </path>
+  <path id="wave3" d="M0 30 Q25 50, 50 30 T100 30" fill="none" stroke="white" stroke-width="2">
+    <animate attributeName="d" dur="2s" repeatCount="indefinite" values="M0 30 Q25 40, 50 30 T100 30; M0 30 Q25 50, 50 30 T100 30; M0 30 Q25 40, 50 30 T100 30" />
+  </path>
+</svg>
